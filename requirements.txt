@@ -1,0 +1,6 @@
+aiohttp~=3.8.1
+pytz~=2022.2.1
+polyline~=1.4.0
+pygame~=2.1.2
+pygame_gui
+toml~=0.10.2
