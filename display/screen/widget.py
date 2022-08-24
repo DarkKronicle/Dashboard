@@ -17,11 +17,17 @@ class Widget:
         self.height = height
 
     async def on_minute(self, time: datetime) -> None:
-        raise NotImplementedError()
+        pass
 
     async def add(self) -> None:
         raise NotImplementedError()
 
     async def remove(self) -> None:
         raise NotImplementedError()
+
+    def second(self):
+        pass
+
+    def render(self):
+        pass
 

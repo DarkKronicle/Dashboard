@@ -1,5 +1,6 @@
 from display.screen.screen import Screen
 from display.screen.widgets.bus_widget import BusWidget
+from display.screen.widgets.time_widget import TimeWidget
 
 
 class Dashboard(Screen):
@@ -9,5 +10,6 @@ class Dashboard(Screen):
 
     def setup_widgets(self):
         self.widgets.append(BusWidget(self, 10, 10, 330, self.screen_size[1] - 20))
+        self.widgets.append(TimeWidget(self, self.screen_size[0] // 2 - 40, 10, 160, 60))
 
 

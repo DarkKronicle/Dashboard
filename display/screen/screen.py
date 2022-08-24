@@ -34,7 +34,7 @@ def get_font_kwargs(path: Path):
 
 class Screen:
 
-    def __init__(self, *, fps=5):
+    def __init__(self, *, fps=15):
         self.ui_manager: UIManager = None
         self.background_surface = None
         self.screen = None
@@ -43,6 +43,7 @@ class Screen:
         self.FPS = fps
         self.event_queue = asyncio.Queue()
         self.widgets: list[Widget] = []
+        self.time = 0
 
     def error_thrown(self, error: Exception):
         traceback.print_exception(error)
@@ -63,13 +64,24 @@ class Screen:
             current_time = 0
             while True:
                 last_time, current_time = current_time, time.time()
-                await asyncio.sleep(1 / self.FPS - (current_time - last_time))  # tick
+                await asyncio.sleep(1 / self.FPS)  # tick
                 self.ui_manager.update(current_time - last_time)
                 self.screen.blit(self.background_surface, (0, 0))
                 self.ui_manager.draw_ui(self.screen)
+                for widget in self.widgets:
+                    widget.render()
                 pygame.display.update()
+                self.tick()
         except Exception as e:
             self.error_thrown(e)
+
+    def tick(self):
+        if self.time & 1 == int(time.time()) & 1:
+            self.second()
+
+    def second(self):
+        for widget in self.widgets:
+            widget.second()
 
     async def handle_events(self):
         try:
