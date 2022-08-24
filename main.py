@@ -1,8 +1,8 @@
-from display.screen.screen_handler import Screen
+from display.screen.dashboard import Dashboard
 
 
 def main():
-    screen = Screen()
+    screen = Dashboard()
     screen.start()
 
 

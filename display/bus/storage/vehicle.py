@@ -3,6 +3,7 @@ from datetime import datetime
 
 from display.api.serialize import Model
 from display.api.time_util import get_js_time
+from display.bus.storage.route import Route
 
 
 @dataclass(repr=False)
@@ -20,7 +21,7 @@ class Vehicle(Model):
     vehicle_id: int
     timestamp: datetime
 
-    def get_route(self, routes):
+    def get_route(self, routes) -> Route:
         for r in routes:
             if r.route_id == self.route_id:
                 return r

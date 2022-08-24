@@ -1,3 +1,5 @@
+from typing import Iterator
+
 import aiohttp
 
 from display import config
@@ -13,7 +15,7 @@ class Estimates:
     def __init__(self, estimates: list[Estimate]):
         self.estimates: list[Estimate] = [e for e in estimates if len(e.times) > 0]
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Estimate]:
         for e in self.estimates:
             yield e
 

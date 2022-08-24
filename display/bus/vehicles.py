@@ -1,3 +1,5 @@
+from typing import Iterator
+
 import aiohttp
 
 from display import config
@@ -13,7 +15,7 @@ class Vehicles:
     def __init__(self):
         self.vehicles: list[Vehicle] = []
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Vehicle]:
         for v in self.vehicles:
             yield v
 

@@ -1,3 +1,5 @@
+from typing import Iterator
+
 import aiohttp
 
 from display import config
@@ -12,7 +14,7 @@ class Routes:
     def __init__(self):
         self.routes: list[Route] = []
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Route]:
         for r in self.routes:
             yield r
 
