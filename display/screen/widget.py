@@ -20,10 +20,10 @@ class Widget:
         pass
 
     async def add(self) -> None:
-        raise NotImplementedError()
+       pass
 
     async def remove(self) -> None:
-        raise NotImplementedError()
+        pass
 
     def second(self):
         pass

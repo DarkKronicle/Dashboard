@@ -14,6 +14,14 @@ class Color:
         return Color(r, g, b)
 
     @property
+    def int_tuple(self):
+        return self.r_int, self.g_int, self.b_int
+
+    @property
+    def float_tuple(self):
+        return self.r, self.g, self.b
+
+    @property
     def r_int(self):
         return int(self.r * 255)
 

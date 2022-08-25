@@ -161,6 +161,7 @@ class Screen:
     async def setup(self):
         for widget in self.widgets:
             asyncio.ensure_future(widget.add())
+        self.time_loop.start()
 
     @tasks.loop(minutes=1)
     async def time_loop(self):

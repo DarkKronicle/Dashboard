@@ -1,25 +1,17 @@
 from datetime import datetime
 
-import pygame
-
+from display.screen.position import Position
 from display.screen.screen import Screen
-from display.screen.widget import Widget
 from display.api import time_util
+from display.screen.widgets.text_widget import TextWidget
 
 
-class TimeWidget(Widget):
+class TimeWidget(TextWidget):
 
-    def __init__(self, screen: Screen, x, y, width, height):
-        super().__init__(screen, x, y, width, height)
+    def __init__(self, screen: Screen, x, y, width, height, position: Position = Position.MIDDLE_MIDDLE):
+        super().__init__(screen, x, y, width, height, font_name='IBMPlex', font_size=50, position=position)
 
-    async def add(self) -> None:
-        pass
-
-    async def remove(self) -> None:
-        pass
-
-    def render(self):
+    def get_text(self):
         time = time_util.utc_object(datetime.utcnow())
         time = time_util.to_timezone(time, 'America/Denver')
-        font: pygame.font = self.screen.ui_manager.get_theme().get_font_dictionary().find_font(font_name='IBMPlex', font_size=50, bold=False, italic=False)
-        font.render_to(self.screen.screen, (self.x, self.y + self.height), time.strftime('%H:%M:%S'), (255, 255, 255))
+        return time.strftime('%H:%M:%S')
