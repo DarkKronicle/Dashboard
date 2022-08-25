@@ -4,3 +4,4 @@ polyline~=1.4.0
 pygame~=2.1.2
 pygame_gui
 toml~=0.10.2
+Pillow~=9.2.0

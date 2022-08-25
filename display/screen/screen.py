@@ -36,7 +36,7 @@ class Screen:
 
     def __init__(self, *, fps=15):
         self.ui_manager: UIManager = None
-        self.background_surface = None
+        self.background_surface: pygame.Surface = None
         self.screen = None
         self.screen_size = (800, 600)
         self.loop = None
@@ -67,9 +67,9 @@ class Screen:
                 await asyncio.sleep(1 / self.FPS)  # tick
                 self.ui_manager.update(current_time - last_time)
                 self.screen.blit(self.background_surface, (0, 0))
-                self.ui_manager.draw_ui(self.screen)
                 for widget in self.widgets:
                     widget.render()
+                self.ui_manager.draw_ui(self.screen)
                 pygame.display.update()
                 self.tick()
         except Exception as e:
